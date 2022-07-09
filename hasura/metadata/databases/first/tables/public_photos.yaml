@@ -1,0 +1,26 @@
+table:
+  schema: public
+  name: photos
+array_relationships:
+  - name: comments
+    using:
+      foreign_key_constraint_on:
+        column: photo_id
+        table:
+          schema: public
+          name: comments
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - description
+        - photo_url
+      backend_only: false
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+      filter: {}
+      check: null
